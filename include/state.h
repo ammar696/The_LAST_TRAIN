@@ -48,4 +48,14 @@ const int OBJ_MISSION_WON       = 14;
 const int OBJ_MISSION_FAILED    = 15;
 const int NUM_OBJECTIVES        = 16;
 
+struct GameState {
+    int energy;
+    int time;
+    int score;
+    int currentFloor;
+    int currentRoom;
+    char inventory[10]; 
+    bool objectives[NUM_OBJECTIVES];
+}
+
 #endif // STATE_H
