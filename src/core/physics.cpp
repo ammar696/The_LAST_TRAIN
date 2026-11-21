@@ -73,6 +73,7 @@ bool canTraverse(int targetFloor, int targetRoom, char connType,
                     bool emergencyAccess = hasItem(inventory, inventoryCount, ENT_EMERGENCY_CARD) && (emergencyTripsLeft > 0);
                     return normalAccess || emergencyAccess;
                  }
+                 return false;
 
                  }
 
