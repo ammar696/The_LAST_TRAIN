@@ -1,0 +1,6 @@
+=== THE LAST TRAIN - GAME SUMMARY ===
+Result: GAME OVER
+Final Score: 0
+Remaining Energy: 94
+Remaining Time: 47
+Objectives Completed: 1/16
