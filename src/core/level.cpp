@@ -5,6 +5,8 @@
 using namespace std;
 
 
+
+
 static char charAt(const char* line, int col) {
     int len = 0;
     while (line[len] != '\0') { len++; }
@@ -45,7 +47,7 @@ bool loadBuildingMap(const char* filename,char horizontalConn[][ROOMS_PER_FLOOR-
             return false;
         }
         int len=0;
-        while(len!='\0'){len++;}
+         while(lines[i][len]!='\0'){len++;}
         if(len>0 && lines[i][len-1] == '\r'){
             lines[i][len - 1] = '\0';
         }
@@ -80,8 +82,121 @@ bool loadBuildingMap(const char* filename,char horizontalConn[][ROOMS_PER_FLOOR-
         entityCounts[0][3]++;
     }
 return true;
-
 }
 
+static bool parseNumber(const char* text, int& result) {
+    if (text[0] == '\0') { return false; }          // empty text
+    result = 0;
+    for (int i = 0; text[i] != '\0'; i++) {
+        if (text[i] < '0' || text[i] > '9') { return false; }   // not a digit
+        result = result * 10 + (text[i] - '0');               // the character '0'
+    }
+    return true;
+}
 
+bool loadInitialState(const char* filename,
+                      int& playerFloor, int& playerRoom,
+                      int& energy, int& time, int& score,
+                      char inventory[MAX_INVENTORY_CAPACITY], int& inventoryCount,
+                      bool objectives[NUM_OBJECTIVES], int& emergencyTripsLeft) {
+
+     if(filename==nullptr){
+        return false;
+    }
+    ifstream file(filename);
+    if(!file.is_open()){                               // opening map file
+       
+        return false;
+    }
+    playerFloor=0;
+    playerRoom=0;
+    emergencyTripsLeft=0;
+    inventoryCount=0;
+
+    for(int i=0;i<MAX_INVENTORY_CAPACITY;i++){
+        inventory[i]=' ';
+    }
+
+    for(int i=0;i< NUM_OBJECTIVES;i++){
+        objectives[i]=false;
+    }
+    int fileenergy=0;
+    int filetime=0;
+    int filescore=0;
+    bool gotenergy=false;
+    bool gottime=false;
+    bool gotscore=false;
+
+    char line[MAX_LINE_LEN];
+    while (file.getline(line,MAX_LINE_LEN))
+    {
+       trimWhitespace(line);
+       if(line[0]=='\0'){
+        continue;
+       }
+       int colon=0;
+       while(line[colon]!='\0' && line[colon]!=':'){
+        colon++;
+       }
+       if(line[colon]=='\0'){
+        continue;
+       }
+       line[colon]='\0';
+       char* key=line;
+       char* value=line+colon+1;
+       trimWhitespace(key);
+       trimWhitespace(value);
+
+       if(stringEquals(key, "INITIAL_ENERGY")){
+        if (!parseNumber(value, fileenergy)) { return false; }
+    
+        gotenergy=true;
+       }
+       if(stringEquals(key, "INITIAL_TIME")){
+        if (!parseNumber(value, filetime)) { return false; }
+        
+        gottime=true;
+       }
+       if(stringEquals(key, "INITIAL_SCORE")){
+        if (!parseNumber(value, filescore)) { return false; }
+        
+        gotscore=true;
+       }
+    }
+      if(!gotenergy || !gotscore || !gottime){
+        return false;
+      }
+      if(fileenergy<0 || fileenergy>MAX_ENERGY || filetime<0 || filetime>MAX_TIME){
+        return false;
+      }
+      energy=fileenergy;
+      time=filetime;
+      score=filescore;
+
+    
+     
+    return true;
+}
+
+const char* getEntityName(char entitySymbol) {
+    switch (entitySymbol) {
+        case ENT_MASTER_KEY:   return "Master Key";
+        case ENT_ENERGY_PACK:  return "Energy Pack";
+        case ENT_EMERGENCY_TOOLKIT:	return "Emergency Toolkit";
+        case ENT_CLUE_4:	return "Clue Digit 4";
+        case ENT_FUSE:	return "Fuse";
+        case ENT_CAT:	return "Cat";
+        case ENT_CONTROL_PANEL:	return "Control Panel";
+        case ENT_LIFT_PASS:	return "Lift Pass";
+        case ENT_PASSENGER:	return "Injured Passenger";
+        case ENT_MEDICAL_KIT:	return "Medical Kit";
+        case ENT_EMERGENCY_CARD:	return "Emergency Access Card";
+        case ENT_CLUE_2:	return "Clue Digit 2";
+        case ENT_CLUE_7:	return "Clue Digit 7";
+        case ENT_CABINET_TRAIN_KEY:	return "Cabinet / Train Key";
+        case ENT_CAT_CARRIER:	return "Cat Carrier";
+        case ENT_OBSERVATION_TOKEN:	return "Observation Token";
+        default:               return "Unknown";
+    }
+}
 
