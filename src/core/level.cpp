@@ -108,8 +108,8 @@ bool loadInitialState(const char* filename,
        
         return false;
     }
-    playerFloor=0;
-    playerRoom=0;
+    playerFloor=1;
+    playerRoom=1;
     emergencyTripsLeft=0;
     inventoryCount=0;
 
