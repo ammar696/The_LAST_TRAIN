@@ -17,7 +17,7 @@ static bool markNeighbours(int f1, int r1,
             char t;
             if (!visited[f2][r2] && isDirectlyConnected(f1, r1, f2, r2, horizontalConn, t))
             {
-                visited[f2][r2] = t;
+                visited[f2][r2] = true;
                 marked = true;
             }
         }
