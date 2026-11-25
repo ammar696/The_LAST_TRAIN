@@ -45,7 +45,7 @@ bool isDirectlyConnected(int fromF, int fromR, int toF, int toR,
         }
     }
     // Different floors: Lift 1 between Floor 1 (0) and Floor 2 (1) in Room 2 (1) or Room 3 (2)
-    if ((fromR == 1 || fromR == 2) && fromR == toR && ((fromF == 0 && toF == 1) || (fromF == 1 && toF == 0)))
+    if ((fromR == 1 || fromR == 2) && fromR == toR)
     {
         if ((fromF == 0 && toF == 1) || (fromF == 1 && toF == 0))
         {

@@ -46,7 +46,7 @@ void renderDashboard(int playerFloor, int playerRoom, int energy, int time, int 
     else{
         for(int i=0;i<inventoryCount && i<MAX_INVENTORY_CAPACITY;i++){
             char sm=inventory[i];
-            cout<<"["<<sm<<" "<< getEntityName(sm)<<"]"<<endl;
+            cout<<"["<<sm<<" "<< getEntityName(sm)<<"]";
             if(i+1 < inventoryCount && i+1 <MAX_INVENTORY_CAPACITY){
                 cout<<",";
 
@@ -88,7 +88,7 @@ void renderDashboard(int playerFloor, int playerRoom, int energy, int time, int 
     cout<<"F "<<f+1<<":";
     for(int r=0;r<ROOMS_PER_FLOOR;r++){
         bool here=(f==FloorIdx && r==RoomIdx );
-        cout<<"R "<<r+1<<(here?"*":" ")<<endl;
+        cout<<"R "<<r+1<<(here?"*":" ");
         if(r<ROOMS_PER_FLOOR-1){
             cout<<"-";
         }
