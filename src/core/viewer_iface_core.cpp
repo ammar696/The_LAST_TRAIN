@@ -8,23 +8,15 @@ using namespace std;
 
 
 int ZeroBasedFloor(int floorVal){
-   
-    if(floorVal>=0 && floorVal<NUM_FLOORS){
-        return floorVal;
-    }
-    if(floorVal==NUM_FLOORS){
-        return NUM_FLOORS-1;
+    if(floorVal >= 1 && floorVal <= NUM_FLOORS){
+        return floorVal - 1;
     }
     return 0;
 }
 
 int ZeroBasedRoom(int roomVal){
-   
-    if(roomVal>=0 && roomVal<ROOMS_PER_FLOOR){
-        return roomVal;
-    }
-    if(roomVal==ROOMS_PER_FLOOR){
-        return ROOMS_PER_FLOOR-1;
+    if(roomVal >= 1 && roomVal <= ROOMS_PER_FLOOR){
+        return roomVal - 1;
     }
     return 0;
 }
@@ -63,7 +55,7 @@ void renderDashboard(int playerFloor, int playerRoom, int energy, int time, int 
                         int fd=ZeroBasedFloor(floor);
                         int rd=ZeroBasedRoom(room);
 
-                    cout<<"floor "<<fd+1<<"Room "<<rd+1<<endl;
+                    cout<<"floor "<<fd+1<<"| Room "<<rd+1<<endl;
                     if(roomEntities==nullptr || entityCount<=0){
                         cout<<"No visible items found or entities here"<<endl;
                      return;

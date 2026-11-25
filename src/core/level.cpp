@@ -109,8 +109,8 @@ bool loadBuildingMap(const char *filename, char horizontalConn[][ROOMS_PER_FLOOR
         }
     }
 
-    char lines[16][MAX_LINE_LEN];
-    for (int i = 0; i < 16; i++)
+    char lines[17][MAX_LINE_LEN];
+    for (int i = 0; i < 17; i++)
     {
 
         if (!file.getline(lines[i], MAX_LINE_LEN))
@@ -137,10 +137,14 @@ bool loadBuildingMap(const char *filename, char horizontalConn[][ROOMS_PER_FLOOR
         {
             int col = 8 + 12 * k;
             char c = charAt(lines[labelline], col);
-            if (c == CONN_DOOR || c == CONN_WINDOW || c == CONN_SOLID_WALL || c == CONN_LOCKED_DOOR)
-            {
-                horizontalConn[f - 1][k - 1] = c;
-            }
+        if (c == CONN_DOOR || c == CONN_WINDOW || c == CONN_SOLID_WALL || c == CONN_LOCKED_DOOR)
+        {
+        horizontalConn[f - 1][k - 1] = c;
+        }
+        else if (f == 2 && k == 2 && c == '1' && charAt(lines[labelline], col - 1) == 'L')
+        {
+        horizontalConn[f - 1][k - 1] = CONN_DOOR;
+        }
         }
         for (int r = 1; r <= 4; r++)
         {

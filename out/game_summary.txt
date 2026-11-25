@@ -1,0 +1,25 @@
+=== THE LAST TRAIN - GAME SUMMARY ===
+Result: GAME OVER
+Final Score: 20/520
+Remaining Energy: 79/100
+Remaining Time: 36/50
+Objectives Completed: 2/15
+
+OBJECTIVE CHECKLIST:
+[DONE] Master Key
+[DONE] Clue 4
+[TODO] Clue 2
+[TODO] Clue 7
+[TODO] Cabinet Unlocked
+[TODO] Train Key
+[TODO] Fuse Collected
+[TODO] Fuse Installed
+[TODO] Lift Pass
+[TODO] Lift 2 Active
+[TODO] Passenger Rescued
+[TODO] Cat Carrier
+[TODO] Cat Secured
+[TODO] Train Prepared
+[TODO] Mission Victory
+
+Audit: Ended early by player.

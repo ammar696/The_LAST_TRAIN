@@ -29,8 +29,8 @@ if(!loadInitialState(initStateFile,playerFloor,playerRoom,energy,time,score,inve
   cerr<<"Error: Could not load "<<initStateFile<<"\n";
   return 1;
 }
-if(playerFloor<1 || playerFloor>NUM_FLOORS || playerRoom<1 || playerRoom>ROOMS_PER_FLOOR){
-  cerr<<"Error: Invalid starting room F"<<playerFloor<<"-R"<<playerRoom<<"\n";
+if(!validateStartingRoom(playerFloor,playerRoom,horizontalConn)){
+  cerr<<"Error: Invalid or unreachable starting room F"<<playerFloor<<"-R"<<playerRoom<<"\n";
   return 1;
 }
 cout<<"===========================================\n";
