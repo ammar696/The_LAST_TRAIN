@@ -4,6 +4,7 @@
 #include "logger.h"
 #include "viewer_iface.h"
 #include "util.h"
+#include "level.h"
 #include <iostream>
 #include <string>
 
